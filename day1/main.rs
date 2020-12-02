@@ -17,13 +17,29 @@ fn main() -> Result<(), Error> {
             }
         };
     }
-
-    // filter all > 2020
-    v.retain(|&i| i < 2020);
-
-    for i in v {
-
+    // pair of 2
+    for i in &v {
+        let want = 2020 - i;
+        if v.contains(&want) {
+            println!("{}and {}", i, want);
+        }
     }
+    // tripples
+    
+    for i in &v {
+        let parent = 2020 - i;
+        for j in &v {
+            if parent > *j {
+                let child = parent - *j;
+                if v.contains(&child) {
+                    println!("{}and {} and {}", j, child, i);
+                }
+            }
+        }
+    }
+
+
+
 
     Ok(())
 }
